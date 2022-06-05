@@ -8,7 +8,7 @@ const catchAsyncErrors = require("./catchAsyncErrors");
 exports.isAuthenticatedUser = catchAsyncErrors(async(req,res,next)=>{
 
     const {token} = req.cookies;
-    console.log(token);
+    // console.log(token);
 
     if(!token){
         return next(new ErrorHandler('Login first to access the resource',401));
