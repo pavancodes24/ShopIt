@@ -11,11 +11,11 @@ router.get('/products',isAuthenticatedUser,authorizeRoles('admin'), getProducts)
 router.get('/product/:id',getSingleProduct);
 
 //router.post('/products/new').post(newProduct);
-router.post('/admin/product/new',isAuthenticatedUser, newProduct)
+router.post('/admin/product/new',isAuthenticatedUser, authorizeRoles('admin'), newProduct)
 
-router.put('/admin/product/:id',isAuthenticatedUser, updateProduct);
+router.put('/admin/product/:id',isAuthenticatedUser, authorizeRoles('admin'), updateProduct);
 
-router.delete('/admin/product/:id',isAuthenticatedUser, deleteProduct);
+router.delete('/admin/product/:id',isAuthenticatedUser, authorizeRoles('admin'), deleteProduct);
 
 
 
