@@ -4,7 +4,6 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
-const user = require("../models/user");
 
 // Register a user => /api/v1/register
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -26,6 +25,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   //         success: true,
   //         token
   //     })
+
   sendToken(user, 200, res);
 });
 
@@ -106,7 +106,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
     .createHash("sha256")
     .update(req.params.token)
     .digest("hex");
-  // console.log(resetPasswordToken,'check2')
+  console.log(resetPasswordToken,'check2')
 
   const user = await User.findOne({
     resetPasswordToken,
@@ -139,8 +139,9 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Get currently logged in user details => /api/v1/me
 exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
+  // console.log(req.user,'requser')
   const user = await User.findById(req.user.id);
-
+// console.log(user,'after requser')
   res.status(200).json({
     success: true,
     user,
