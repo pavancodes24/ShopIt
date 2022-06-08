@@ -6,7 +6,7 @@ const {getProducts,newProduct,getSingleProduct,updateProduct,deleteProduct, crea
 const {isAuthenticatedUser,authorizeRoles} = require('../middlewares/auth')
 
 // router.route('/products').get(getProducts);
-router.get('/products',isAuthenticatedUser,authorizeRoles('admin'), getProducts)  //only for checking..
+router.get('/products', getProducts)  //only for checking..
 
 router.get('/product/:id',getSingleProduct);
 
