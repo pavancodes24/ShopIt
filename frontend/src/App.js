@@ -1,12 +1,22 @@
-import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-function App() {
+import React from "react";
+import "./App.css";
+import Home from "./components/Home";
+import Footer from "./components/layout/Footer";
+import Header from "./components/layout/Header";
+const App = () => {
   return (
-    <>
-    This is app page
-    </>
+    <Router>
+      <div>
+        <Header />
+        <div className="container container-fluid">
+          <Route path="/" component={Home} exact />
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
