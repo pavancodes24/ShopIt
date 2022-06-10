@@ -8,22 +8,23 @@ import Loader from './layout/Loader';
 import Pagination from "react-js-pagination";
 
 
-const Home = () => {
+const Home = ({match}) => {
     const alert = useAlert();
     const dispatch = useDispatch()
     const { loading, products, error, productCount,resPerPage } = useSelector(state => state.products);
     const [currentPage, setCurrentPage] = useState(1);
 
-
+    const keyword = match.params.keyword;
+    
     useEffect(() => {
         if(error) {
             // alert.success('success')
            return alert.error(error)
         }
 
-        dispatch(getProducts(currentPage))
+        dispatch(getProducts(keyword,currentPage))
         
-    }, [dispatch,alert,error,currentPage])
+    }, [dispatch, alert, error, keyword , currentPage])
     return loading ? (
         <Loader />
     ) : (
@@ -39,7 +40,7 @@ const Home = () => {
 
                 </div>
             </section>
-            {/* {resPerPage <= productCount && ( */}
+            {resPerPage <= productCount && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination
                 activePage={currentPage}
@@ -54,7 +55,7 @@ const Home = () => {
                 linkClass="page-link"
               />
             </div>
-          {/* )} */}
+          )}
 
             
 
