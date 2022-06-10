@@ -21,19 +21,24 @@ exports.getProducts = catchAsyncErrors(async (req,res,next)=>{
     // console.log(req.user,'hello world')
 
     const resPerPage = 3;
-    const productCount = await Product.countDocuments();  //for future
+    const productsCount = await Product.countDocuments();  //for future
 
     const apiFeatures = new APIFeatures(Product.find(), req.query)
                         .search()
                         .filter()
-                        .pagination(resPerPage)
-    const products = await apiFeatures.query;
+                        
+    let products = await apiFeatures.query;
+    let filteredProductsCount = products.length;
+
+    apiFeatures.pagination(resPerPage)
+    products = await apiFeatures.query;
     res.status(200).json({
         success: true,
         // message: 'this route will show all the products in database'
         count: products.length,
-        productCount,
+        productsCount,
         resPerPage,
+        filteredProductsCount,
         products
     })
 })
