@@ -14,15 +14,15 @@ const Home = () => {
     // dispatch(getProducts())
 
 
-    // useEffect(() => {
-    //     if(error) {
-    //         // alert.success('success')
-    //        return alert.error(error)
-    //     }
+    useEffect(() => {
+        if(error) {
+            // alert.success('success')
+           return alert.error(error)
+        }
 
-    //     dispatch(getProducts())
+        dispatch(getProducts())
         
-    // }, [dispatch,alert,error])
+    }, [dispatch,alert,error])
     return loading ? (
         <Loader />
     ) : (

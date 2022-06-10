@@ -12,16 +12,16 @@ const ProductDetails = (props) => {
     const alert = useAlert();
     
     const { loading, error, product } = useSelector(state => state.productDetails);
-    console.log(product,'product')
+    // console.log(product,'product');
 
-    // useEffect(() => {
-    //     dispatch(getProductDetails(props.match.params.id));
-    //     if (error) {
-    //       alert.error(error);
-    //       dispatch(clearErrors());
-    //     }
+    useEffect(() => {
+        dispatch(getProductDetails(props.match.params.id));
+        if (error) {
+          alert.error(error);
+          dispatch(clearErrors());
+        }
 
-    // }, [dispatch, alert, error, props.match.params.id]);
+    }, [dispatch, alert, error, props.match.params.id]);
 
   return (
     <div>
