@@ -24,7 +24,8 @@ export const productsReducer = (state = initState, action) => {
         ...state,
         loading: false,
         products: action.payload.products,
-        productsCount: action.payload.productsCount,
+        productCount: action.payload.productCount,
+        resPerPage : action.payload.resPerPage
       };
     case ALL_PRODUCTS_FAIL:
       return {
