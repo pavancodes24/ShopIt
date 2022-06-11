@@ -40,6 +40,11 @@ export const login = (email, password) => async (dispatch) => {
 }
 
 
+//clear error
+export const clearErrors =  () => async (dispatch) =>{
+    dispatch({ type: CLEAR_ERRORS})
+}
+
 
 // Register user
 export const register = (userData) => async (dispatch) => {
@@ -66,9 +71,4 @@ export const register = (userData) => async (dispatch) => {
             payload: error.response.data.message
         })
     }
-}
-
-//clear error
-export const clearErrors =  () => async (dispatch) =>{
-    dispatch({ type: CLEAR_ERRORS})
 }
