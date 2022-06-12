@@ -22,7 +22,7 @@ const Range = createSliderWithTooltip(Slider.Range);
 
 const Home = ({ match }) => {
     const alert = useAlert();
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(state => state.products);
     const [currentPage, setCurrentPage] = useState(1);
     const [price, setPrice] = useState([1, 1000]);
@@ -160,7 +160,7 @@ const Home = ({ match }) => {
 
                 </div>
             </section>
-            {resPerPage <= count && (
+            {resPerPage <= count && (   
                 <div className="d-flex justify-content-center mt-5">
                     <Pagination
                         activePage={currentPage}

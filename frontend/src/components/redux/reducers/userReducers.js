@@ -13,7 +13,7 @@ import {
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_SUCCESS,
   UPDATE_PROFILE_RESET,
-   UPDATE_PROFILE_FAIL,
+  UPDATE_PROFILE_FAIL,
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_RESET,
@@ -77,39 +77,45 @@ export const authReducer = (state = { user: {} }, action) => {
   }
 };
 
-
-export const userReducer = (state = {}, action) => { 
-  switch (action.type) { 
-    
+export const userReducer = (state = {}, action) => {
+  switch (action.type) {
+    case UPDATE_PASSWORD_REQUEST:
     case UPDATE_PROFILE_REQUEST:
       return {
         ...state,
-        loading: true
-      }
-    
+        loading: true,
+      };
+
+    case UPDATE_PASSWORD_SUCCESS:
     case UPDATE_PROFILE_SUCCESS:
       return {
         ...state,
         loading: false,
-        isUpdated: action.payload
-      }
-    
+        isUpdated: action.payload,
+      };
+
+    case UPDATE_PASSWORD_FAIL:
     case UPDATE_PROFILE_FAIL:
-      return {  
+      return {
         ...state,
         loading: false,
-        error: action.payload
-      }
-    
+        error: action.payload,
+      };
+
+    case UPDATE_PASSWORD_RESET:
     case UPDATE_PROFILE_RESET:
       return {
         ...state,
-        isUpdated: false
-      }
-    
- 
+        isUpdated: false,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
     default:
       return state;
-
   }
-}
+};
