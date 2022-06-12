@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Pagination from "react-js-pagination";
+import '../App.css'
 
 
 import Slider from "rc-slider";
@@ -100,7 +101,7 @@ const Home = ({ match }) => {
                                     <ul className="p1-0">
                                         {categories.map(category=>(
                                             <li style={{cursor: 'pointer',listStyleType: 'none'}}
-                                                key={category}
+                                                key={category} className="categoryClick"
                                                 onClick={()=>setCategory(category)}
                                             >
                                                {category} 
@@ -119,7 +120,7 @@ const Home = ({ match }) => {
                                     <ul className="p1-0">
                                         {[5,4,3,2,1].map(star=>(
                                             <li style={{cursor: 'pointer',listStyleType: 'none'}}
-                                                key={star}
+                                                key={star} className="ratingClick"
                                                 onClick={()=>setRatings(star)}
                                             >
                                                <div className="rating-outer">

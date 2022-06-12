@@ -614,3 +614,10 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+
+.categoryClick:hover, .ratingClick:hover {
+  background-color: #fa9c23;
+  color: white;
+  padding-left: 5px;
+  border-radius: 2px;
+}

@@ -10,6 +10,9 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import { loadUser } from "./components/redux/actions/userActions";
 import store from "./components/redux/store"
+import Profile from "./components/user/Profile";
+import ProtectedRoute from "./components/Route/ProtectedRoute";
+import UpdateProfile from "./components/user/UpdateProfile";
 
 
 const App = () => {
@@ -27,6 +30,11 @@ const App = () => {
           <Route path="/product/:id" component={ProductDetails} exact />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <ProtectedRoute path="/me" component={Profile} exact />
+          <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+
+
+
 
         </div>
         <Footer />
