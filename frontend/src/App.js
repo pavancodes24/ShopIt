@@ -9,37 +9,39 @@ import ProductDetails from "./components/product/ProductDetails";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import { loadUser } from "./components/redux/actions/userActions";
-import store from "./components/redux/store"
+import store from "./components/redux/store";
 import Profile from "./components/user/Profile";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdateProfile from "./components/user/UpdateProfile";
 import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
-
+import Cart from "./components/cart/Cart";
 
 const App = () => {
-
-  useEffect(() =>{
-    store.dispatch(loadUser())
-  },[])
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
   return (
     <Router>
       <div>
         <Header />
         <div className="container container-fluid">
           <Route path="/" component={Home} exact />
-          <Route path="/search/:keyword" component={Home}  />
+          <Route path="/search/:keyword" component={Home} />
           <Route path="/product/:id" component={ProductDetails} exact />
+          <Route path="/cart" component={Cart} exact />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/password/forgot" component={ForgotPassword} />
           <Route path="/password/reset/:token" component={NewPassword} />
           <ProtectedRoute path="/me" component={Profile} exact />
           <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
-          <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
-          
-
+          <ProtectedRoute
+            path="/password/update"
+            component={UpdatePassword}
+            exact
+          />
         </div>
         <Footer />
       </div>

@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails, clearErrors } from "../redux/actions/productActions";
 import Loader from '../layout/Loader';
 import { Carousel } from "react-bootstrap";
+import { addItemToCart } from '../redux/actions/cartActions';
 
 
-const ProductDetails = (props) => {
+
+const ProductDetails = ({ match }) => {
   // console.log(props,'props')
 
 
@@ -19,13 +21,18 @@ const ProductDetails = (props) => {
     // console.log(product,'product');
 
     useEffect(() => {
-        dispatch(getProductDetails(props.match.params.id));
+        dispatch(getProductDetails(match.params.id));
         if (error) {
           alert.error(error);
           dispatch(clearErrors());
         }
 
-    }, [dispatch, alert, error, props.match.params.id]);
+    }, [dispatch, alert, error, match.params.id]);
+
+    const addToCart = ()=>{
+      dispatch(addItemToCart(match.params.id,quantity));
+      alert.success('Item added to cart successfully')
+    }
 
     const increaseQty=()=>{
       const count = document.querySelector('.count');
@@ -90,6 +97,8 @@ const ProductDetails = (props) => {
               type="button"
               id="cart_btn"
               className="btn btn-primary d-inline ml-4"
+              disabled={product.stock===0}
+              onClick={addToCart}
             >
               Add to Cart
             </button>
@@ -97,7 +106,7 @@ const ProductDetails = (props) => {
             <hr />
 
             <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >
-                {product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
+                {product.stock > 0 ? `In Stock - ${product.stock}` : 'Out of Stock'}</span></p>
 
             <hr />
 
