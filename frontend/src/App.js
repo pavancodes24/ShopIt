@@ -17,6 +17,8 @@ import UpdatePassword from "./components/user/UpdatePassword";
 import ForgotPassword from "./components/user/ForgotPassword";
 import NewPassword from "./components/user/NewPassword";
 import Cart from "./components/cart/Cart";
+import Shipping from "./components/cart/Shipping";
+import ConfirmOrder from "./components/cart/ConfirmOrder";
 
 const App = () => {
   useEffect(() => {
@@ -42,6 +44,8 @@ const App = () => {
             component={UpdatePassword}
             exact
           />
+          <ProtectedRoute path="/shipping" component={Shipping} />
+          <ProtectedRoute path="/confirm" component={ConfirmOrder} exact />
         </div>
         <Footer />
       </div>
