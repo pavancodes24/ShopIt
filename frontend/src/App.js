@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Footer from "./components/layout/Footer";
@@ -20,13 +20,13 @@ import Cart from "./components/cart/Cart";
 import Shipping from "./components/cart/Shipping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
 
-
 // Payment
-import { Elements } from '@stripe/react-stripe-js'
-import { loadStripe } from '@stripe/stripe-js'
-import Payment from './components/cart/Payment';
-import OrderSuccess from './components/cart/OrderSuccess';
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import Payment from "./components/cart/Payment";
+import OrderSuccess from "./components/cart/OrderSuccess";
+import ListOrders from "./components/order/ListOrder";
+import OrderDetails from "./components/order/OrderDetails";
 
 const App = () => {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -69,7 +69,8 @@ const App = () => {
               <ProtectedRoute path="/payment" component={Payment} />
             </Elements>
           )}
-
+          <ProtectedRoute path="/orders/me" component={ListOrders} exact />
+          <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
         </div>
         <Footer />
       </div>
