@@ -10,35 +10,44 @@ import {
   newReviewReducer,
   productReviewsReducer,
   reviewReducer,
-} from "./reducers/productsReducer";
+} from "../redux/reducers/productsReducer";
 
 import {
   authReducer,
   userReducer,
   forgotPasswordReducer,
-} from "./reducers/userReducers";
-import { cartReducer } from "./reducers/cartReducer";
+  allUsersReducer,
+  userDetailsReducer,
+} from "../redux/reducers/userReducers";
+
+import { cartReducer } from "../redux/reducers/cartReducer";
 import {
   newOrderReducer,
   myOrdersReducer,
   orderDetailsReducer,
+  allOrdersReducer,
+  orderReducer,
 } from "../redux/reducers/orderReducer";
 
 const reducer = combineReducers({
   products: productsReducer,
   productDetails: productDetailsReducer,
+  newProduct: newProductReducer,
+  product: productReducer,
+  productReviews: productReviewsReducer,
+  review: reviewReducer,
   auth: authReducer,
   user: userReducer,
+  allUsers: allUsersReducer,
+  userDetails: userDetailsReducer,
   forgotPassword: forgotPasswordReducer,
   cart: cartReducer,
   newOrder: newOrderReducer,
   myOrders: myOrdersReducer,
+  allOrders: allOrdersReducer,
   orderDetails: orderDetailsReducer,
-  newProduct: newProductReducer,
-  product: productReducer,
+  order: orderReducer,
   newReview: newReviewReducer,
-  productReviews: productReviewsReducer,
-  review: reviewReducer,
 });
 
 let initialState = {

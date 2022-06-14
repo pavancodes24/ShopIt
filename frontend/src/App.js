@@ -27,6 +27,7 @@ import Payment from "./components/cart/Payment";
 import OrderSuccess from "./components/cart/OrderSuccess";
 import ListOrders from "./components/order/ListOrder";
 import OrderDetails from "./components/order/OrderDetails";
+import Dashboard from "./components/admin/Dashboard";
 
 const App = () => {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -72,6 +73,7 @@ const App = () => {
           <ProtectedRoute path="/orders/me" component={ListOrders} exact />
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
         </div>
+        <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
         <Footer />
       </div>
     </Router>
