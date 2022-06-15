@@ -28,6 +28,10 @@ import OrderSuccess from "./components/cart/OrderSuccess";
 import ListOrders from "./components/order/ListOrder";
 import OrderDetails from "./components/order/OrderDetails";
 import Dashboard from "./components/admin/Dashboard";
+import ProductsList from "./components/admin/ProductsList";
+import NewProduct from "./components/admin/NewProduct";
+import { useSelector } from "react-redux";
+import UpdateProduct from "./components/admin/UpdateProduct";
 
 const App = () => {
   const [stripeApiKey, setStripeApiKey] = useState("");
@@ -42,6 +46,10 @@ const App = () => {
 
     getStripApiKey();
   }, []);
+  const { user, isAuthenticated, loading } = useSelector(state => state.auth)
+
+
+
   return (
     <Router>
       <div>
@@ -74,7 +82,16 @@ const App = () => {
           <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
         </div>
         <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
-        <Footer />
+        <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact />
+        <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
+        <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact />
+
+
+        
+        {!loading && (!isAuthenticated || user.role !== 'admin') && (
+          <Footer />
+        )}
+
       </div>
     </Router>
   );
