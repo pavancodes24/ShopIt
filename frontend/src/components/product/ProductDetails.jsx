@@ -21,6 +21,7 @@ const ProductDetails = ({ match }) => {
   const alert = useAlert();
 
   const { loading, error, product } = useSelector(state => state.productDetails)
+  console.log(product,'productsDetails')
   const { user } = useSelector(state => state.auth)
   const { error: reviewError, success } = useSelector(state => state.newReview)
 
