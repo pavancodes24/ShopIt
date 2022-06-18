@@ -4,7 +4,8 @@ import Search from './Search';
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { logout } from '../redux/actions/userActions';
-
+import { CLEAR_CART } from '../redux/constants/cartConstant';
+import { useEffect } from 'react';
 
 
 
@@ -14,6 +15,7 @@ const Header = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
     const { user, loading } = useSelector((state) => state.auth);
+    
 
     const { cartItems } = useSelector((state) => state.cart);
 
@@ -21,9 +23,10 @@ const Header = () => {
 
     const logoutHandler = () => {
         dispatch(logout());
+        dispatch({type: CLEAR_CART})
         alert.success("Logged out successfully.");
-      };
-      
+    };
+
     return (
         <>
             <nav className="navbar row">
@@ -85,7 +88,7 @@ const Header = () => {
                                 <Link
                                     className="dropdown-item text-danger"
                                     to="/"
-                                onClick={logoutHandler}
+                                    onClick={logoutHandler}
                                 >
                                     Logout
                                 </Link>
